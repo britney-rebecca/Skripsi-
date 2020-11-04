@@ -21,7 +21,7 @@ const BerandaPenjual = ({onPress ,navigation}) => {
     }
 
     const [produk, setProduk] = useState([]);
-    useEffect(() => {
+    setTimeout(() => {
         Fire.database()
         .ref('produk/'+ user.uid )
         .once('value')
@@ -42,7 +42,7 @@ const BerandaPenjual = ({onPress ,navigation}) => {
         }).catch(err => {
             showError(err.message);
         })
-    })
+    }, 0)
     return (
         <View style={styles.page}>
             <ScrollView showsVerticalScrollIndicator={false}>
