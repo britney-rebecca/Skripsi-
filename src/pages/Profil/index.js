@@ -38,7 +38,7 @@ const Profil = ({navigation}) => {
 
     return (
         <View style={styles.page}>
-            <Header title='Profile' onPress={() => navigation.goBack()} />
+            <Header onPress={() => navigation.goBack()}  title='Profile' />
             <Gap height={10} />
             {profile.fullName.length > 0 && (
              <Profile 
@@ -56,8 +56,7 @@ const Profil = ({navigation}) => {
                 <ListProfile id='2' 
                     profile={Address} 
                     name='Alamat'  
-                    desc={profile.alamatLengkap} 
-                    // onPress={ ()=>{ Linking.openURL('https://www.google.com/maps/')}} 
+                    desc={(profile.daerah) + ', ' + (profile.kota)}
             />
 
            <View style={styles.tombol}>

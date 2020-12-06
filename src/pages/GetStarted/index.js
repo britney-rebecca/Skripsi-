@@ -10,9 +10,9 @@ const GetStarted = ({navigation}) => {
             </View>
 
            <View>
-            <Button title= "Daftar sebagai Penjual" onPress={() => navigation.navigate('RegisterPenjual')}/>
+            <Button title= "Daftar sebagai Penjual" onPress={() => navigation.navigate('Disclaimer')}/>
             <Gap height={10}/>
-            <Button title= "Daftar sebagai Pengepul" onPress={() => navigation.navigate('RegisterPengepul')}/>
+            <Button title= "Daftar sebagai Pengepul" onPress={() => navigation.navigate('DisclaimerPengepul')}/>
             <Gap height={10}/>
             <Button type='secondary' title= "Masuk sebagai Penjual" onPress={() => navigation.navigate('LoginPenjual')}/>
             <Gap height={10}/>

@@ -29,10 +29,10 @@ const TambahProduk = ({ navigation, route }) => {
             } else {
                 setURI(response.uri);
                 setName(response.fileName);
-                setPhoto({uri: response.uri});
+                setPhoto({ uri: response.uri });
             }
         });
-    }; 
+    };
 
     useEffect(() => {
         getDataUser();
@@ -48,7 +48,8 @@ const TambahProduk = ({ navigation, route }) => {
         produkBy: user.uid,
         fullName: user.fullName,
         nomorHp: user.nomorHp,
-        alamatLengkap: user.alamatLengkap,
+        kota: user.kota,
+        daerah: user.daerah,
         jenisBesi: '',
         berat: '',
         harga: '',
@@ -58,43 +59,45 @@ const TambahProduk = ({ navigation, route }) => {
     const uploadAndContinue = () => {
         setLoading(true);
         Fire.database()
-        .ref('produk/'+user.uid)
-        .push({
-            produkBy: user.uid,
-            fullName: user.fullName,
-            nomorHp: user.nomorHp,
-            alamatLengkap: user.alamatLengkap,
-            jenisBesi: form.jenisBesi,
-            berat: form.berat,
-            harga: form.harga,
-            fotoBesi: imgURI
-        })
-        .then((data)=>{
-            Fire.database()
-            .ref('produkPengepul/')
+            .ref('produk/' + user.uid)
             .push({
                 produkBy: user.uid,
                 fullName: user.fullName,
                 nomorHp: user.nomorHp,
-                alamatLengkap: user.alamatLengkap,
+                kota: user.kota,
+                daerah: user.daerah,
                 jenisBesi: form.jenisBesi,
                 berat: form.berat,
                 harga: form.harga,
                 fotoBesi: imgURI
             })
-            .then((data)=>{
-                console.log('produkPengepul ' , data)
-                navigation.navigate('MainAppPenjual')
-            }).catch((error)=>{
-                console.log('error ' , error)
-            })
+            .then((data) => {
+                Fire.database()
+                    .ref('produkPengepul/')
+                    .push({
+                        produkBy: user.uid,
+                        fullName: user.fullName,
+                        nomorHp: user.nomorHp,
+                        kota: user.kota,
+                        daerah: user.daerah,
+                        jenisBesi: form.jenisBesi,
+                        berat: form.berat,
+                        harga: form.harga,
+                        fotoBesi: imgURI
+                    })
+                    .then((data) => {
+                        console.log('produkPengepul ', data)
+                        navigation.navigate('MainAppPenjual')
+                    }).catch((error) => {
+                        console.log('error ', error)
+                    })
 
-            setLoading(false);
-            console.log('data ' , data)
-        }).catch((error)=>{
-            setLoading(false);
-            console.log('error ' , error)
-        })
+                setLoading(false);
+                console.log('data ', data)
+            }).catch((error) => {
+                setLoading(false);
+                console.log('error ', error)
+            })
     }
 
     return (

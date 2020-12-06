@@ -13,7 +13,10 @@ import {
     Informasi, 
     Profil, 
     TambahProduk,
-    DetailProdukPengepul
+    DetailProdukPengepul,
+    Disclaimer,
+    DisclaimerPengepul,
+    Search
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from '../components';
@@ -57,6 +60,9 @@ const Router = () => {
             <Stack.Screen name="Profil" component={Profil} options= {{headerShown : false}}/>
             <Stack.Screen name="TambahProduk" component={TambahProduk} options= {{headerShown : false}}/>
             <Stack.Screen name="DetailProdukPengepul" component={DetailProdukPengepul} options= {{headerShown : false}}/>
+            <Stack.Screen name="Disclaimer" component={Disclaimer} options= {{headerShown : false}}/>
+            <Stack.Screen name="DisclaimerPengepul" component={DisclaimerPengepul} options= {{headerShown : false}}/>
+            <Stack.Screen name="Search" component={Search} options= {{headerShown : false}}/>
         </Stack.Navigator>
     );
 };

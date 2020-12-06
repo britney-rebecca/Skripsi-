@@ -12,7 +12,9 @@ import Informasi from './Informasi';
 import Profil from './Profil';
 import TambahProduk from './TambahProduk';
 import DetailProdukPengepul from './DetailProdukPengepul';
-
+import Disclaimer from './Disclaimer';
+import DisclaimerPengepul from './DisclaimerPengepul';
+import Search from './Search';
 
 export {
     Splash, 
@@ -29,4 +31,7 @@ export {
     TambahProduk,
     DetailProdukPengepul,
     Informasi,
+    Disclaimer,
+    DisclaimerPengepul,
+    Search
 };

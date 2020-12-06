@@ -8,7 +8,9 @@ import {Fire} from '../../config'
 const RegisterPengepul = ({ navigation }) => {
     const [form, setForm ] = useForm ({
         fullName: '',
-        alamatLengkap: '',
+        // alamatLengkap: '',
+        kota: '',
+        daerah: '',
         nomorHp: '',
         email: '',
         password: '',
@@ -27,7 +29,9 @@ const onContinue = () => {
              setForm('reset');
              const data = {
                 fullName: form.fullName,
-                alamatLengkap: form.alamatLengkap,
+                // alamatLengkap: form.alamatLengkap,
+                kota: form.kota,
+                daerah: form.daerah,
                 nomorHp: form.nomorHp,
                 email: form.email,
                 uid: success.user.uid
@@ -39,18 +43,16 @@ const onContinue = () => {
              navigation.navigate('UploadPhoto', data);
              console.log('register success: ', success);
         })
-        .catch((error) => {
-            const errorMessage = error.message;
+        .catch((err) => {
             setLoading(false);
             showError(err.message)
-
           });
     };
     return (
         <>
         <View style={styles.page}>
             <ScrollView showsVerticalScrollIndicator={false}>
-            <Header onPress={() => navigation.goBack()} title="Daftar Akun" />
+            <Header title="Daftar Akun" onPress={() => navigation.goBack()}  />
             <View style={styles.content}>
 
                     <Input 
@@ -59,10 +61,22 @@ const onContinue = () => {
                         onChangeText ={value => setForm('fullName',value)} />
                     <Gap height={8} />
 
-                    <Input 
+                    {/* <Input 
                         label="Alamat" 
                         value ={form.alamatLengkap} 
                         onChangeText ={(value) => setForm('alamatLengkap',value)} />
+                    <Gap height={8} /> */}
+
+                    <Input 
+                        label="Kota" 
+                        value ={form.kota} 
+                        onChangeText ={(value) => setForm('kota',value)} />
+                    <Gap height={8} />
+
+                    <Input 
+                        label="Daerah/Desa" 
+                        value ={form.daerah} 
+                        onChangeText ={(value) => setForm('daerah',value)} />
                     <Gap height={8} />
 
                     <Input 

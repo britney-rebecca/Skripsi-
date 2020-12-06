@@ -1,16 +1,23 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, TextInput, TouchableOpacity, View, Image } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { HomeProfile, Gap, ProdukBesiPengepul } from '../../components'
-import { colors, showError } from '../../utils'
+import { HomeProfile, Gap, ProdukBesiPengepul, Input } from '../../components'
+import { colors, showError, useForm } from '../../utils'
 import { Fire } from '../../config'
+import { ILSearch } from '../../assets'
 
-const Beranda = ({onPress ,navigation}) => {
+
+const Beranda = ({ onPress, navigation }) => {
+
     const [produk, setProduk] = useState([]);
     const [produks, setProduks] = useState([]);
+    const [form, setForm] = useForm({
+        kota: '',
+        daerah: '',
+    });
 
     setTimeout(() => {
-            Fire.database()
+        Fire.database()
             .ref('produkPengepul/')
             .once('value')
             .then(res => {
@@ -29,35 +36,41 @@ const Beranda = ({onPress ,navigation}) => {
                 showError(err.message);
             });
     }, 0);
+    
 
     return (
         <View style={styles.page}>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <HomeProfile onPress={() => navigation.navigate('Profil')}/>
-                <Gap height={10}/>
-                <Text>
-                    Cari Besi
-                </Text>
-                <Gap height={10}/>
+                <HomeProfile onPress={() => navigation.navigate('Profil')} />
+                <Gap height={10} />
+                <View style={{ position: 'relative', marginHorizontal: 8, marginVertical: 17 }}>
+                    <TextInput 
+                        placeholder="Cari Besi"
+                        style={{ borderWidth: 1, borderColor: colors.primary, borderRadius: 20, height: 40, fontSize: 13, paddingLeft: 55, paddingRight: 14 }}
+                     />
+                    <Image source={ILSearch} style={{ position: 'absolute', top: 3, left: 10, backgroundColor: 'white' }} />
+                </View>
                 {
                     produk.map(list => {
-                        return <TouchableOpacity onPress = {() => navigation.navigate('DetailProdukPengepul', {
-                            jenisBesi: list.data.jenisBesi, 
-                            harga: list.data.harga, 
-                            alamatLengkap: list.data.alamatLengkap, 
-                            pic: {uri: list.data.fotoBesi}, 
-                            fullName: list.data.fullName, 
+                        return <TouchableOpacity onPress={() => navigation.navigate('DetailProdukPengepul', {
+                            jenisBesi: list.data.jenisBesi,
+                            harga: list.data.harga,
+                            kota: list.data.kota,
+                            daerah: list.data.daerah,
+                            pic: { uri: list.data.fotoBesi },
+                            fullName: list.data.fullName,
                             nomorHp: list.data.nomorHp
-                            })}>
-                        <ProdukBesiPengepul 
-                        key={list.id}
-                        jenisBesi={list.data.jenisBesi}
-                        harga={list.data.harga}
-                        alamatLengkap={list.data.alamatLengkap}
-                        pic={{uri: list.data.fotoBesi}}
-                        test={list.id}
-                        klik='Klik untuk melihat selengkapnya' 
-                        />
+                        })}>
+                            <ProdukBesiPengepul
+                                key={list.id}
+                                jenisBesi={list.data.jenisBesi}
+                                harga={list.data.harga}
+                                kota={list.data.kota}
+                                daerah={list.data.daerah}
+                                pic={{ uri: list.data.fotoBesi }}
+                                test={list.id}
+                                klik='Klik untuk melihat selengkapnya'
+                            />
                         </TouchableOpacity>
                     })
                 }

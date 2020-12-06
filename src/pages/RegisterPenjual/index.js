@@ -8,7 +8,8 @@ import {Fire} from '../../config'
 const RegisterPenjual = ({ navigation }) => {
     const [form, setForm ] = useForm ({
         fullName: '',
-        alamatLengkap: '',
+        kota: '',
+        daerah: '',
         nomorHp: '',
         email: '',
         password: '',
@@ -27,7 +28,8 @@ const RegisterPenjual = ({ navigation }) => {
              setForm('reset');
              const data = {
                 fullName: form.fullName,
-                alamatLengkap: form.alamatLengkap,
+                kota: form.kota,
+                daerah: form.daerah,
                 nomorHp: form.nomorHp,
                 email: form.email,
                 uid: success.user.uid
@@ -39,11 +41,9 @@ const RegisterPenjual = ({ navigation }) => {
              navigation.navigate('MainAppPenjual', data);
              console.log('register success: ', success);
         })
-        .catch((error) => {
-            const errorMessage = error.message;
+        .catch((err) => {
             setLoading(false);
             showError(err.message)
-
           });
     };
     return (
@@ -60,9 +60,15 @@ const RegisterPenjual = ({ navigation }) => {
                     <Gap height={8} />
 
                     <Input 
-                        label="Alamat" 
-                        value ={form.alamatLengkap} 
-                        onChangeText ={(value) => setForm('alamatLengkap',value)} />
+                        label="Kota" 
+                        value ={form.kota} 
+                        onChangeText ={(value) => setForm('kota',value)} />
+                    <Gap height={8} />
+
+                    <Input 
+                        label="Daerah/Desa" 
+                        value ={form.daerah} 
+                        onChangeText ={(value) => setForm('daerah',value)} />
                     <Gap height={8} />
 
                     <Input 

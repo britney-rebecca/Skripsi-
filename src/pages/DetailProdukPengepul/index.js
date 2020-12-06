@@ -8,7 +8,7 @@ import { showMessage } from 'react-native-flash-message'
 import { ScrollView } from 'react-native-gesture-handler'
 
 const DetailProdukPengepul = ({ navigation, route }) => {
-    const { jenisBesi, harga, alamatLengkap, pic, fullName, nomorHp } = route.params;
+    const { jenisBesi, harga, kota, daerah, pic, fullName, nomorHp } = route.params;
     const [profile, setProfile] = useState({
         fullName: '',
         nomorHp: '',
@@ -48,7 +48,7 @@ const DetailProdukPengepul = ({ navigation, route }) => {
                     id='3'
                     profile={Address}
                     name='Alamat'
-                    desc={alamatLengkap}
+                    desc={(daerah) + ', ' + (kota)}
                     onPress={() => { Linking.openURL('https://www.google.com/maps/') }} />
                 <Gap height={10} />
                 <View style={styles.tombol}>

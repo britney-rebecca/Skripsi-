@@ -1,20 +1,19 @@
 import React from 'react'
 import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { IconEdit, IconNext } from '../../../assets'
-// import { DummyUser2 } from '../../../assets'
 import { colors, useForm } from '../../../utils'
 
 const ListProduk = ({ navigation, profile, name, desc, type, onPress, icon}) => {
     const [form, setForm ] = useForm ({
         fullName: '',
-        alamatLengkap: '',
+        kota: '',
+        daerah: '',
         nomorHp: '',
         email: '',
         password: '',
     });
     return (
         <TouchableOpacity style={styles.container} onPress={onPress} >
-            {/* {icon ? <Icon /> : <Image source={profile} style={styles.avatar} />} */}
             <View style={styles.content}>
                 <Text style={styles.name}>{name}</Text>
                 <Text style={styles.desc}>{desc}</Text>

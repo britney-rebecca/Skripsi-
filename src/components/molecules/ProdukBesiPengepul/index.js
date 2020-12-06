@@ -2,38 +2,27 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 // import { DummyPhoto1 } from '../../../assets'
 import { colors } from '../../../utils'
+import { Button } from '../../atoms'
 
 const ProdukBesiPengepul = ({ jenisBesi, pic, harga }) => {
-    // const [produk, setProduk] = useState([]);
-
-    // setTimeout(() => {
-    //     db.database()
-    //     .ref('produk/'+test)
-    //     .once('value')
-    //     .then(res => {
-    //         if (res.val()) {
-    //             const oldData = res.val();
-    //             const data = [];
-    //             Object.keys(oldData).map(item => {
-    //                 data.push({
-    //                     id: item,
-    //                     data: oldData[item]
-    //                 })
-    //             })
-    //             setProduk(data);
-    //         }
-    //     }).catch(err => {
-    //         showError(err.message);
-    //     });
-    // }, 100);
-
+    const [disable, setDisable] = useState(false);
+    const [pesan, setPesan] = useState ('Tersedia');
+    const book = () => {
+        setPesan('Terjual');
+        setDisable(true);
+    }
     return (
         <View style={styles.container}>
             <Image source={pic} style={styles.image} />
             <View style={styles.titleWrapper}>
                 <Text style={styles.title}>{jenisBesi}</Text>
-                <Text style={styles.klik}>{harga}</Text>
+                <Text style={styles.klik}>Estimasi Harga : {harga}</Text>
                 <Text style={styles.klik}>Klik untuk melihat selengkapnya</Text>
+                <Text style={styles.title}>{pesan}</Text>
+                <Button disable={disable} title='Ambil' onPress={() => book()}  disabled={true} />
+            </View>
+            <View style={styles.pesan}>
+            
             </View>
         </View>
     )
@@ -67,5 +56,10 @@ const styles = StyleSheet.create({
     titleWrapper: {
         marginLeft: 13,
         flex: 1
-    }
+    },
+    pesan:{
+        alignItems: 'center',
+        width: 30,
+        height: 3
+    },
 })
